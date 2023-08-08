@@ -54,12 +54,23 @@
 
 ### ipsec和strongswan
 1. linux通过xfrm框架实现了ipsec
-2. xfrm框架实现一个ipsec vpn隧道需要用到sps(哪些包需要通过隧道发送), sas(对报文如何封装)
-3. strongswan的charon通过ike协议，在vpn两端协商出sps和sas
-4. strongswan自己在用户空间保存ike_sa
-5. strongswan将sps和sas通过Netlink socket下发给xfrm框架
+2. xfrm框架建立一个ipsec vpn隧道需要用到sps(哪些包需要通过隧道发送), sas(对报文如何封装)
+3. strongswan通过ike协议，在vpn的两端协商出sps和sas
+4. strongswan将sps和sas通过Netlink socket下发给xfrm框架
 
 ![linux-ipsec-impl1](https://github.com/tjyx111/note/assets/140045445/efcdc40b-7d8f-4399-8408-489de38acc73)
+
+### xfrm保存sps和sas
+
+- SA : struct xfrm_state
+- SP : struct xfrm_policy
+
+- 查看
+```
+ip xfrm state // shows SA instances
+ip xfrm policy // shows SP instances
+```
+
 
 
 
